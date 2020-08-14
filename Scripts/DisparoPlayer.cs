@@ -1,10 +1,21 @@
-﻿using System.Collections;
+﻿//Nombre del Desarrollador: Kevin Lozano Sedeño
+//Asignatura: Estructura de Datos
+//Descripcion del uso de este codigo:
+/*
+Este script se utilizara para generar disparo del arma
+
+*/
+
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DisparoPlayer : MonoBehaviour
 {
+    //Son las variables a utilizar en el script
     [SerializeField] Rigidbody[] proyectil;
     [SerializeField] int tipoMunicion = 0;
     [SerializeField] Transform mano;
@@ -40,6 +51,9 @@ public class DisparoPlayer : MonoBehaviour
         //{
         //    tipoMunicion = proyectil.Length-1;
         //}
+
+        //Se declaro una variable para elegir la tecla en el inspector, asi como definir el tipo de proyectil que se va a disparar
+        //Tambien se agrego una variable fuerza, esta se puede cambiar en el inspector al gusto del programador
 
         if (Input.GetKeyDown(tecladisparo))
         {

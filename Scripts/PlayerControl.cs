@@ -60,13 +60,14 @@ public class PlayerControl : MonoBehaviour
     // Update sirve para utilizar los datos, componentes y variables
     void Update()
     {
+        //region variables
         #region Variables
         ejeZ = Input.GetAxis("Vertical") * VelocidadPersonaje*Time.deltaTime;
         var ejeX = Input.GetAxis("Horizontal") * VelocidadPersonaje*Time.deltaTime;
         rotacionX = Input.GetAxis("Mouse X") * velocidadRotacionX;
         rotacionY = Input.mousePosition.x * velocidadRotacionX;
         #endregion
-
+        //Region guarda codigo de salto
         #region Salto
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -77,7 +78,7 @@ public class PlayerControl : MonoBehaviour
             fisicasRB.AddForce(Vector2.up * FuerzaSaltoPersonaje, ForceMode.Impulse);
         }
         #endregion
-
+        //Guarda movimiento por fisicas
         #region Movimientos Fisicas
 
 
@@ -92,7 +93,7 @@ public class PlayerControl : MonoBehaviour
 
         //fisicasRB.velocity = new Vector3(fisicasRB.velocity.x, fisicasRB.velocity.y, ejeZ);
         #endregion
-
+        //Guarda movimiento por transform
         #region Movimiento por transform
 
         transform.Translate(new Vector3(ejeX, 0, ejeZ));
@@ -101,7 +102,7 @@ public class PlayerControl : MonoBehaviour
 
         #region Rotacion
 
-        rotacionY = Mathf.Clamp(rotacionY, -90, 90);
+        rotacionY = Mathf.Clamp(rotacionY, -90, 90); //limita el rango de campo visual del jugador
 
         transform.localEulerAngles = new Vector3(Input.mousePosition.y * -velocidadRotacionY, rotacionY, 0);
         #endregion

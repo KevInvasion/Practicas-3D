@@ -1,4 +1,13 @@
-﻿using System.Collections;
+﻿//Nombre del Desarrollador: Kevin Lozano Sedeño
+//Asignatura: Estructura de Datos
+//Descripcion del uso de este codigo:
+/*
+Este script se utilizara para generar un rayo, ademas de crear un puntero que cambie de color cuando este encuentre un enemigo
+
+*/
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,8 +16,9 @@ public class DisparoRayo : MonoBehaviour
 {
     public float distanciaRayo;
     public LayerMask capaDaño;
-    public Image puntero;
+    public Image puntero; //Esta variable identificara la imagen png que funcionara como puntero.
     
+    //Las variables siguentes guardaran la informacion y posicion del rayo.
     private Ray rayo;
     private Ray rayoInteraccion;
     private Vector2 centroCamara;
@@ -32,11 +42,12 @@ public class DisparoRayo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //El rayo sera producido desde el barril de la pistola y se dirigira al centro de la camara.
         rayo.origin = Barril.position;
         rayo.direction = Barril.forward;
         rayoInteraccion = Camera.main.ScreenPointToRay(this.centroCamara);
 
-        Debug.DrawRay(rayoInteraccion.origin, rayoInteraccion.direction * distanciaRayo, Color.green);
+        Debug.DrawRay(rayoInteraccion.origin, rayoInteraccion.direction * distanciaRayo, Color.green); //Coloreara de color verde el rayo, se visualiza solo en la ventana Scene
 
         if (Physics.Raycast(rayoInteraccion,out hitinfo, distanciaRayo, capaDaño))
         {
@@ -44,13 +55,13 @@ public class DisparoRayo : MonoBehaviour
             {
                 if (hitinfo.collider.tag == "Enemy")
                 {
-                    puntero.color = Color.green;
+                    puntero.color = Color.green; //El puntero se colorea de verde cuando encuentra un enemigo.
                 }
             }
         }
         else
         {
-            puntero.color = Color.white;
+            puntero.color = Color.white; //El puntero se pintara de blanco cuando el arma no identifique un enemigo.
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -61,7 +72,7 @@ public class DisparoRayo : MonoBehaviour
                 {
                     if (hitinfo.collider.tag=="Enemy")
                     {
-                        Destroy(hitinfo.collider.gameObject);
+                        Destroy(hitinfo.collider.gameObject); //Destruira el objeto enemigo cuando el rayo golpee a un enemigo.
                     }
                 }
             }

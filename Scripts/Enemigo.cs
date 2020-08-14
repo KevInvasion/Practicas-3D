@@ -1,4 +1,13 @@
-﻿using System.Collections;
+﻿//Nombre del Desarrollador: Kevin Lozano Sedeño
+//Asignatura: Estructura de Datos
+//Descripcion del uso de este codigo:
+/*
+Este script se utilizara para generar el control del enemigo, asi como su movimiento hacia el jugador
+
+*/
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +20,7 @@ public class Enemigo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); //e declara que el enemigo debera caminar hacia el player
         //ojitos = GetComponent<Transform>();
     }
 
@@ -28,7 +37,7 @@ public class Enemigo : MonoBehaviour
 
         float distanciaEntreobjetos = Vector3.Distance(posicionTotaldeljugador, posicionTotaldelenemigo);
 
-        Debug.DrawLine(posicionTotaldelenemigo,posicionTotaldeljugador,Color.green);
+        Debug.DrawLine(posicionTotaldelenemigo,posicionTotaldeljugador,Color.green); // Se dibujara una linea entre el jugadir y el enemigo color verde.
 
         if (distanciaEntreobjetos > 3)
         {
